@@ -1,23 +1,44 @@
-import { useContext, useEffect, useState } from "react"
+import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react"
 import "./Main.css"
 import { CoinContext } from "../../context/CoinContext"
 import { Link } from "react-router-dom"
 import React from 'react'
 
+
+interface Coin{
+    name: string;
+    image: string;
+    symbol: string;
+    market_cap_rank: number;
+    price_change_percentage_24h: number;
+    market_cap: number;
+    current_price: number;
+    id: string;
+}
+
+
+interface CoinContextType {
+    allCoin: Coin[];
+    currency: {
+        symbol: string;
+        name: string;
+    }
+}
+
 let Main: React.FC = ()=>{
 
-    const {allCoin, currency} = useContext(CoinContext)
-    const [displayCoin, setDisplayCoin] = useState([])
-    const [input, setInput] = useState('')
+    const {allCoin, currency} = useContext(CoinContext) as CoinContextType;
+    const [displayCoin, setDisplayCoin] = useState<Coin[]>([])
+    const [input, setInput] = useState<string>('')
 
-    const inputHandler = (event)=>{
+    const inputHandler = (event: ChangeEvent<HTMLInputElement>)=>{
         setInput(event.target.value);
         if(event.target.value = ''){
             setDisplayCoin(allCoin)
         }
     }
 
-    const searchHandler = async(event)=>{
+    const searchHandler = async(event: FormEvent<HTMLFormElement>)=>{
         debugger
         event.preventDefault();
         const coins = await allCoin.filter((item)=>{

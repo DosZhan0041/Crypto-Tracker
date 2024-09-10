@@ -9,7 +9,7 @@ let Header: React.FC = ()=>{
 
     const {setCurrency} = useContext(CoinContext)
 
-    const currenccyHandler = (event) =>{
+    const currenccyHandler = (event: any) =>{
         switch(event.target.value){
             case "usd": {
                 setCurrency({name: "usd", symbol: "$"});

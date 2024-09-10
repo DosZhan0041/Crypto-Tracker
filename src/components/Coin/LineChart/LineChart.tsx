@@ -8,14 +8,14 @@ interface HistoricalData {
 
 let LineChart: React.FC<HistoricalData> = ({prices})=>{
 
-    const [data, setData] = useState<string[][]>([["Data", "Prices"]]);
+    const [data, setData] = useState<any[][]>([["Date", "Prices"]]);
 
     useEffect(() => {
-        const dataCopy: string[][] = [["Data", "Prices"]];
+        const dataCopy: any[][] = [["Date", "Prices"]];
         if (prices && prices.length > 0) {
             prices.forEach((item) => {
                 const date = new Date(item[0]).toLocaleDateString();
-                const price = item[1].toFixed(2); // Преобразуем цену в строку с двумя знаками после запятой
+                const price = item[1];
                 dataCopy.push([date, price]);
             });
             setData(dataCopy);
