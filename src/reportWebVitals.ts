@@ -1,5 +1,9 @@
-const reportWebVitals = onPerfEntry => {
-  if (onPerfEntry && onPerfEntry instanceof Function) {
+import { getCLS, getFID, getFCP, getLCP, getTTFB } from 'web-vitals';
+
+type OnPerfEntry = (metric: any) => void;
+
+const reportWebVitals = (onPerfEntry?: OnPerfEntry): void => {
+  if (onPerfEntry && typeof onPerfEntry === 'function') {
     import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
       getCLS(onPerfEntry);
       getFID(onPerfEntry);

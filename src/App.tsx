@@ -5,8 +5,9 @@ import Footer from './components/Footer/Footer';
 import Main from './components/Main/Main';
 import Coin from './components/Coin/Coin';
 import CoinContextProvider from './context/CoinContext';
+import React from 'react';
 
-function App() {
+const App:React.FC =()=>{
   return (
     <BrowserRouter>
       <CoinContextProvider>

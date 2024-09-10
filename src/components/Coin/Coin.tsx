@@ -3,11 +3,38 @@ import './Coin.css'
 import { useContext, useEffect, useState } from 'react';
 import { CoinContext } from '../../context/CoinContext';
 import LineChart from './LineChart/LineChart';
+import React from 'react';
 
-let Coin = () =>{
-    const {coinId} = useParams();
-    const [coinData, setCoinData] = useState();
-    const [historicData, setHistoricData] = useState();
+interface CoinImage{
+    large: string;
+}
+
+ interface Market_Data {
+    high_24h: any;
+    low_24h: any;
+    current_price: any;
+}
+
+interface CoinData{
+    name: string;
+    symbol: string;
+    image: CoinImage;
+    market_cap_rank: number;
+    market_data: Market_Data;
+}
+
+
+
+interface HistoricData {
+    prices: Array<[number, number]>;
+}
+
+
+
+const Coin: React.FC = () =>{
+    const {coinId} = useParams<{coinId: string}>();
+    const [coinData, setCoinData] = useState<CoinData | null>();
+    const [historicData, setHistoricData] = useState<HistoricData>();
     const {currency} = useContext(CoinContext);
 
     let fetchCoinData = async() => {
@@ -50,7 +77,7 @@ let Coin = () =>{
                             <img src={coinData.image.large}></img>
                         </div>
                         <div className='coin-chart'>
-                            <LineChart historicData={historicData}/>
+                            <LineChart prices={historicData.prices}/>
                         </div>
                         <div className='coin-data'>
                             <p>Capital Rank: {coinData.market_cap_rank}</p>
@@ -61,7 +88,7 @@ let Coin = () =>{
                     </div>
                 ):(
                     <div className='coin_loader'>
-                        <span class="loader"></span>
+                        <span className="loader"></span>
                     </div>
                 )}
                 

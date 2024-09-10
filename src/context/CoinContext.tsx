@@ -1,11 +1,33 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
+import React from "react";
 
-export const CoinContext = createContext();
 
-const CoinContextProvider = (props)=>{
+interface Currency {
+    name: string;
+    symbol: string;
+}
 
-    const [allCoin, setAllCoin] = useState([])
-    const [currency, setCurrency] = useState({
+interface Coin{
+    id: string;
+    name: string;
+    symbol: string;
+    current_price: number;
+    market_cap: number;
+    image: string;
+}
+
+interface CoinContextType {
+    allCoin: Coin[];
+    currency: Currency;
+    setCurrency: React.Dispatch<React.SetStateAction<Currency>>
+}
+
+export const CoinContext = createContext<CoinContextType | any>(undefined);
+
+const CoinContextProvider:React.FC<{children: ReactNode}> = ({children})=>{
+
+    const [allCoin, setAllCoin] = useState<Coin[]>([])
+    const [currency, setCurrency] = useState<Currency>({
         name: "usd",
         symbol: "$"
     })
@@ -34,7 +56,7 @@ const CoinContextProvider = (props)=>{
     }
     return(
         <CoinContext.Provider value={contextValue}>
-            {props.children}
+            {children}
         </CoinContext.Provider>
     )
 }

@@ -2,9 +2,10 @@ import { useContext } from 'react'
 import './Header.css'
 import {NavLink} from "react-router-dom"
 import { CoinContext } from '../../context/CoinContext'
+import React from 'react'
 
 
-let Header = ()=>{
+let Header: React.FC = ()=>{
 
     const {setCurrency} = useContext(CoinContext)
 

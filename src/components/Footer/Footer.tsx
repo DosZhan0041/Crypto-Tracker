@@ -1,7 +1,9 @@
 import { NavLink } from "react-router-dom"
 import "./Footer.css"
+import React from 'react';
 
-let Footer = ()=>{
+
+let Footer: React.FC = ()=>{
     return(
         <div className="footer_wrapper">
             <div className="footer">

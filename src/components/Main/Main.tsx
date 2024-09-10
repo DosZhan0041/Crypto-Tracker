@@ -2,8 +2,9 @@ import { useContext, useEffect, useState } from "react"
 import "./Main.css"
 import { CoinContext } from "../../context/CoinContext"
 import { Link } from "react-router-dom"
+import React from 'react'
 
-let Main = ()=>{
+let Main: React.FC = ()=>{
 
     const {allCoin, currency} = useContext(CoinContext)
     const [displayCoin, setDisplayCoin] = useState([])
