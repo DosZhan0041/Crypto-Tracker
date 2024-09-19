@@ -34,7 +34,7 @@ interface HistoricData {
 const Coin: React.FC = () =>{
     const {coinId} = useParams<{coinId: string}>();
     const [coinData, setCoinData] = useState<CoinData | null>();
-    const [historicData, setHistoricData] = useState<HistoricData>();
+    const [historicData, setHistoricData] = useState<HistoricData | null>();
     const {currency} = useContext(CoinContext);
 
     let fetchCoinData = async() => {
@@ -49,13 +49,16 @@ const Coin: React.FC = () =>{
             .catch(err => console.error(err));
     }
 
+    
     let fetchHistoricData = async()=>{
         const options = {
             method: 'GET',
             headers: {accept: 'application/json', 'x-cg-demo-api-key': 'CG-n1xNKzgqyxnKr4p2e8e6VHAn'}
           };
+
+          let days = window.matchMedia('(max-width: 820px)').matches ? 3 : 9;
           
-          fetch(`https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=${currency.name}&days=10&interval=daily`, options)
+          fetch(`https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=${currency.name}&days=${days}&interval=daily`, options)
             .then(response => response.json())
             .then(response => setHistoricData(response))
             .catch(err => console.error(err));

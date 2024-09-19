@@ -39,9 +39,8 @@ let Main: React.FC = ()=>{
     }
 
     const searchHandler = async(event: FormEvent<HTMLFormElement>)=>{
-        debugger
         event.preventDefault();
-        const coins = await allCoin.filter((item)=>{
+        const coins = allCoin.filter((item)=>{
             return item.name.toLowerCase().includes(input.toLowerCase())
         })
         setDisplayCoin(coins)
@@ -80,11 +79,16 @@ let Main: React.FC = ()=>{
                             <p>{item.market_cap_rank}</p>
                             <div className="table-mid">
                                 <img src={item.image}></img>
-                                <p>{item.name + " - " + item.symbol }</p>
+                                <p>{item.name.length >= 10 ? `${item.name.slice(0, 10)}` : item.name} - {item.symbol }</p>
                             </div>    
                             <p>{currency.symbol}{item.current_price.toLocaleString()}</p>
                             <p className={item.price_change_percentage_24h > 0 ? "green" : "red"}>{Math.floor(item.price_change_percentage_24h*100)/100}</p>
-                            <p>{currency.symbol}{item.market_cap.toLocaleString()}</p>
+                            <p>
+                                {currency.symbol}
+                                {item.market_cap >= 1_000_000_000
+                                    ? `${(item.market_cap / 1_000_000_000).toFixed(2)}B`
+                                    : `${(item.market_cap / 1_000_000).toFixed(2)}M`}
+                            </p>
                         </Link>
                     ))
                 }

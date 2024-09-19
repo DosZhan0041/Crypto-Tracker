@@ -43,7 +43,6 @@ let Header: React.FC = ()=>{
             <div className='header-middle'>
                 <ul>
                     <li><NavLink to="/" className={(navData)=>(navData.isActive ? "active" : "")}>Home</NavLink></li>
-                    <li><NavLink to="/prices" className={(navData)=>(navData.isActive ? "active" : "")}>Pricing</NavLink></li>
                     <li><NavLink to="/aboutus" className={(navData)=>(navData.isActive ? "active" : "")}>About Us</NavLink></li>
                     <li><NavLink to="/blog" className={(navData)=>(navData.isActive ? "active" : "")}>Blog</NavLink></li>
                 </ul>
