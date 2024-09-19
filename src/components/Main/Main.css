@@ -150,12 +150,9 @@
     }
     
     .main form{
-        display: flex;
-        flex-direction: row;
         width: 60%;
         height: 6vw;
         justify-content: space-between;
-        background-color: white;
         padding: 0.2vw;
         border-radius: 1vw;
     }
@@ -184,9 +181,7 @@
     }
      
     .table-layout{
-        display: grid;
         grid-template-columns: 0.5fr 2fr 1fr 1fr 1.2fr;
-        align-items: center;
         border-bottom: 0.06vw solid white;
         padding: 0.9vw 1.2vw;
         height: 12vw;
@@ -205,9 +200,6 @@
     }
     
     .table-mid{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
         gap: 1.2vw;
         margin-left: 1.8vw;
     }
